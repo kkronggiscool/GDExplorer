@@ -1,0 +1,80 @@
+<!-- views/search.ejs -->
+<!DOCTYPE ejs>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDExplorer - Search</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/search.css"> <!-- Include the search-specific CSS -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <style>
+        .results-container {
+            margin-top: 20px;
+            text-align: left;
+            width: 80%;
+            margin: 0 auto;
+            background-color: #6f4c3e; /* Brown background */
+            border: 2px solid #ffffff; /* White border */
+            border-radius: 8px;
+            padding: 15px;
+        }
+        .level-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            transition: background 0.3s;
+        }
+        .level-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .level-name {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin: 0;
+        }
+        .level-info {
+            font-size: 1em;
+            color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Level Browser Image at the Top -->
+        <img src="/gdlvlb.png" alt="Geometry Dash Level Browser">
+
+        <!-- Search Form -->
+        <form action="/search" method="GET">
+            <label for="query">Level Name:</label>
+            <input type="text" id="query" name="query" placeholder="Enter Level Name" required>
+            <button type="submit">Search</button>
+        </form>
+
+        <!-- Display the search query -->
+        <% if (query) { %>
+            <h2>You searched for: <%= query %></h2>
+            <p>This only shows the first 10 levels!</p> <!-- Message added here -->
+        <% } %>
+
+        <!-- Display search results -->
+        <div class="results-container">
+            <% if (searchResults.length > 0) { %>
+                <% searchResults.slice(0, 10).forEach(level => { %> <!-- Limit to first 10 results -->
+                    <div class="level-card">
+                        <p class="level-name"><%= level.name %></p>
+                        <p class="level-info">ID: <%= level.id %></p>
+                        <p class="level-info">Author: <%= level.author %></p>
+                        <p class="level-info">Difficulty: <%= level.difficulty %></p>
+                        <p class="level-info">Stars: <%= level.stars %> | Likes: <%= level.likes %> | Downloads: <%= level.downloads %></p>
+                        <p class="level-info">Description: <%= level.description %></p>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p>No results found for "<%= query %>"</p>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>

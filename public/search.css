@@ -1,0 +1,60 @@
+/* public/search.css */
+body {
+    background: linear-gradient(180deg, #0080ff, #004b87); /* Darker Geometry Dash Gradient */
+    color: white;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align content to the top */
+}
+
+.container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20px;
+}
+
+img {
+    width: 70%; /* Level browser image at 70% of the screen width */
+    max-width: 800px; /* Max width to prevent it from becoming too large */
+    margin: 10px 0; /* Space between images */
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    font-size: 1.2em;
+    margin-right: 10px; /* Space between the input and the button */
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 60%; /* Make the text box much wider */
+    max-width: 600px; /* Max width for large screens */
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    background-color: #00b0ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0077ff;
+}

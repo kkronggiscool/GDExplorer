@@ -1,0 +1,53 @@
+<!-- views/level.ejs -->
+<!DOCTYPE ejs>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level Search - GDExplorer</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/exlevelsearch.css"> <!-- Connect to the new CSS file -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <!-- Level ID Search Image -->
+        <img src="/idsearch.png" alt="Level ID Search" class="id-search-image">
+
+        <h1>Search for a Level by ID</h1>
+
+        <!-- Search Form for Level ID -->
+        <form action="/level" method="get">
+            <input type="text" name="id" placeholder="Level ID" required>
+            <button type="submit">Search</button>
+        </form>
+
+        <!-- Display the searched level ID if available -->
+        <% if (typeof levelId !== 'undefined' && levelId !== null) { %>
+            <div class="search-result">
+                <p>You searched for ID: <strong><%= levelId %></strong></p>
+                <p>This shows the level by the ID you searched for.</p>
+            </div>
+
+            <!-- Display level data if available -->
+            <% if (levelData) { %>
+                <div class="level-details" style="background-color: #7B4B2A; border: 2px solid white; padding: 20px; margin-top: 20px; color: white;">
+                    <h2>Level Details</h2>
+                    <p><strong>Name:</strong> <%= levelData.name %></p>
+                    <p><strong>Description:</strong> <%= levelData.description %></p>
+                    <p><strong>Author:</strong> <%= levelData.author %></p>
+                    <p><strong>Difficulty:</strong> <%= levelData.difficulty %></p>
+                    <p><strong>Downloads:</strong> <%= levelData.downloads %></p>
+                    <p><strong>Likes:</strong> <%= levelData.likes %></p>
+                    <p><strong>Length:</strong> <%= levelData.length %></p>
+                    <p><strong>Stars:</strong> <%= levelData.stars %></p>
+                    <p><strong>Song Name:</strong> <%= levelData.songName %> by <%= levelData.songAuthor %></p>
+                    <!-- Add more fields as needed -->
+                </div>
+            <% } else { %>
+                <p>No level data found for this ID.</p>
+            <% } %>
+        <% } %>
+    </div>
+</body>
+</html>

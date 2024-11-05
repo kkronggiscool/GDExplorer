@@ -1,0 +1,44 @@
+/* public/styles.css */
+body {
+    background: linear-gradient(180deg, #0080ff, #004b87); /* Darker Geometry Dash Gradient */
+    color: white;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align content to the top */
+}
+
+.container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20px; /* Ensure some space from the top */
+}
+
+img {
+    width: 70%; /* Geometry Dash logo at 70% of the screen width */
+    max-width: 800px; /* Max width to prevent it from becoming too large */
+    margin: 10px 0; /* Space between images */
+}
+
+img:last-child {
+    width: 40%; /* Level browser image is now 40% of the screen width */
+    max-width: 400px; /* Limit the max size */
+}
+
+a img {
+    width: 50%; /* Search button at 50% of the screen width */
+    max-width: 300px; /* Max width to keep it reasonable */
+    margin-top: 20px; /* Add some space above the search button */
+    cursor: pointer; /* Change cursor to pointer when hovering over the button */
+}
+
+a img:hover {
+    opacity: 0.8; /* Make it slightly transparent when hovered */
+}
