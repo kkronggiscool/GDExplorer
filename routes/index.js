@@ -1,4 +1,3 @@
-// routes/index.js
 const express = require('express');
 const axios = require('axios');
 const router = express.Router();
@@ -38,6 +37,40 @@ router.get('/level', async (req, res) => {
     }
 
     res.render('level', { levelId, levelData }); // Pass level ID and data to the view
+});
+
+// Scores route with pagination and creator leaderboard toggle
+router.get('/scores', async (req, res) => {
+    const playersPerPage = 5; // Show 5 players per page
+    let leaderboardData = [];
+    const page = parseInt(req.query.page) || 1; // Get the page from the query (default to 1 if not provided)
+    const isCreator = req.query.creator === 'true'; // Check if the 'creator' query param is present
+    const isCreatorLeaderboard = isCreator; // Set flag to check if it's creator leaderboard
+    const url = isCreator ? 'https://gdbrowser.com/api/leaderboard?creator' : 'https://gdbrowser.com/api/leaderboard';
+
+    try {
+        const response = await axios.get(url);
+        leaderboardData = response.data; // Get the leaderboard data from the response
+
+        // Paginate the leaderboard data
+        const startIndex = (page - 1) * playersPerPage;
+        const endIndex = startIndex + playersPerPage;
+        const currentLeaderboard = leaderboardData.slice(startIndex, endIndex);
+
+        // Determine if we are on the first or last page
+        const isFirstPage = page === 1;
+        const isLastPage = endIndex >= leaderboardData.length;
+
+        res.render('leaderboard', {
+            leaderboardData: currentLeaderboard,
+            currentPage: page,
+            isFirstPage,
+            isLastPage,
+            isCreatorLeaderboard
+        });
+    } catch (error) {
+        console.error("Error fetching leaderboard data from GDBrowser API:", error.message);
+    }
 });
 
 module.exports = router;

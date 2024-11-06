@@ -1,0 +1,97 @@
+/* public/scores.css */
+body {
+    background: linear-gradient(180deg, #0080ff, #004b87); /* Darker Geometry Dash Gradient */
+    color: white;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align content to the top */
+}
+
+.container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.score-image {
+    width: 50%; /* Adjusted to make the image smaller */
+    max-width: 300px; /* Set a max width for the image */
+    margin-bottom: 30px; /* Add space between the image and the leaderboard */
+}
+
+.pagination-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 20px;
+}
+
+.pagination-buttons a {
+    padding: 10px 20px;
+    background-color: #00b0ff;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.pagination-buttons a:hover {
+    background-color: #0077ff;
+}
+
+.pagination-buttons .disabled {
+    background-color: #b0c4de;
+    cursor: not-allowed;
+}
+
+.creator-button {
+    padding: 10px 20px;
+    background-color: #ff8c00;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 20px;
+}
+
+.creator-button:hover {
+    background-color: #ff6600;
+}
+
+.leaderboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    width: 80%;
+    max-width: 1000px;
+}
+
+.leaderboard-entry {
+    background-color: #a76c47; /* Brown background */
+    padding: 15px;
+    margin: 10px 0;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+
+.leaderboard-entry p {
+    margin: 5px 0;
+    font-size: 1.1em;
+}

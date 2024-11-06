@@ -1,0 +1,55 @@
+<!DOCTYPE ejs>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scores</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/scores.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <!-- Score Text Image at the top -->
+        <img src="/scorestext.png" alt="Scores" class="score-image">
+
+        <!-- Pagination and toggle buttons -->
+        <div class="pagination-buttons">
+            <!-- Show "Normal Leaderboards" button only if creator leaderboard is displayed -->
+            <% if (isCreatorLeaderboard) { %>
+                <a href="/scores?page=1" class="creator-button">
+                    Normal Leaderboards
+                </a>
+            <% } else { %>
+                <a href="/scores?creator=true&page=1" class="creator-button">
+                    Show Creator Leaderboards
+                </a>
+            <% } %>
+
+            <a href="/scores?page=<%= currentPage - 1 %>" class="back-button <%= isFirstPage ? 'disabled' : '' %>">
+                Back
+            </a>
+            <a href="/scores?page=<%= currentPage + 1 %>" class="next-button <%= isLastPage ? 'disabled' : '' %>">
+                Next
+            </a>
+        </div>
+
+        <!-- Leaderboard Entries -->
+        <div class="leaderboard-container">
+            <% leaderboardData.forEach(player => { %>
+                <div class="leaderboard-entry">
+                    <p><strong>Rank:</strong> <%= player.rank %></p>
+                    <p><strong>Username:</strong> <%= player.username %></p>
+                    <p><strong>Stars:</strong> <%= player.stars %></p>
+                    <p><strong>Diamonds:</strong> <%= player.diamonds %></p>
+                    <p><strong>Coins:</strong> <%= player.coins %></p>
+                    <p><strong>User Coins:</strong> <%= player.userCoins %></p>
+                    <p><strong>Demons:</strong> <%= player.demons %></p>
+                    <p><strong>Moons:</strong> <%= player.moons %></p>
+                    <p><strong>Creator Points:</strong> <%= player.cp %></p>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+</body>
+</html>
