@@ -1,0 +1,96 @@
+<!-- views/users.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile Search</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/users.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Search Form -->
+        <header>
+            <img class="user-text-image" src="/usertext.png" alt="Loog lololol">
+            <form action="/users" method="get">
+                <input type="text" name="query" placeholder="Enter username or accountId" required>
+                <button type="submit">Search</button>
+            </form>
+        </header>
+
+        <!-- User Profile Data -->
+        <div class="user-profile">
+            <% if (userData) { %>
+                <h2>Profile for <%= userData.username %></h2>
+                <p>Account ID: <%= userData.accountID %></p>
+                <p>Rank: <%= userData.rank %></p>
+                <p>Stars: <%= userData.stars %></p>
+                <p>Diamonds: <%= userData.diamonds %></p>
+                <p>Coins: <%= userData.coins %></p>
+                <p>User Coins: <%= userData.userCoins %></p>
+                <p>Demons Completed: <%= userData.demons %></p>
+                <p>Moons: <%= userData.moons %></p>
+
+                <!-- Demons Completed -->
+                <div class="demon-completion">
+                    <h3>Demons Completed (Total: <%= userData.demons %>)</h3>
+                    <div>
+                        <h4>Classic Demons (Total: <%= userData.totalClassicDemons %>)</h4>
+                        <ul>
+                            <% for (let [difficulty, count] of Object.entries(userData.classicDemonsCompleted || {})) { %>
+                                <li><%= difficulty.charAt(0).toUpperCase() + difficulty.slice(1) %>: <%= count %></li>
+                            <% } %>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Platformer Demons (Total: <%= userData.totalPlatformerDemons %>)</h4>
+                        <ul>
+                            <% for (let [difficulty, count] of Object.entries(userData.platformerDemonsCompleted || {})) { %>
+                                <li><%= difficulty.charAt(0).toUpperCase() + difficulty.slice(1) %>: <%= count %></li>
+                            <% } %>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Levels Completed -->
+                <div class="level-completion">
+                    <h3>Levels Completed</h3>
+                    <div>
+                        <h4>Classic Levels (Total: <%= userData.totalClassicLevels %>)</h4>
+                        <ul>
+                            <% for (let [difficulty, count] of Object.entries(userData.classicLevelsCompleted || {})) { %>
+                                <li><%= difficulty.charAt(0).toUpperCase() + difficulty.slice(1) %>: <%= count %></li>
+                            <% } %>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Platformer Levels (Total: <%= userData.totalPlatformerLevels %>)</h4>
+                        <ul>
+                            <% for (let [difficulty, count] of Object.entries(userData.platformerLevelsCompleted || {})) { %>
+                                <li><%= difficulty.charAt(0).toUpperCase() + difficulty.slice(1) %>: <%= count %></li>
+                            <% } %>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Social Links -->
+                <div class="social-links">
+                    <h3>Social Links</h3>
+                    <% if (userData.youtube) { %>
+                        <p><a href="https://youtube.com/channel/<%= userData.youtube %>" target="_blank">YouTube</a></p>
+                    <% } %>
+                    <% if (userData.twitter) { %>
+                        <p><a href="https://x.com/<%= userData.twitter %>" target="_blank">Twitter</a></p>
+                    <% } %>
+                    <% if (userData.twitch) { %>
+                        <p><a href="https://twitch.tv/<%= userData.twitch %>" target="_blank">Twitch</a></p>
+                    <% } %>
+                </div>
+            <% } else { %>
+                <p>No user data found. Please search for a user.</p>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>

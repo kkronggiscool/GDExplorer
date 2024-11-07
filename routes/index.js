@@ -73,4 +73,29 @@ router.get('/scores', async (req, res) => {
     }
 });
 
+// routes.js
+router.get('/users', async (req, res) => {
+    const query = req.query.query || ''; // Get the search query from the URL
+    let userData = null;
+
+    if (query) {
+        try {
+            const response = await axios.get(`https://gdbrowser.com/api/profile/${encodeURIComponent(query)}`);
+            userData = response.data;
+            
+            // Calculate totals for classic and platformer demons and levels
+            userData.totalClassicDemons = Object.values(userData.classicDemonsCompleted || {}).reduce((a, b) => a + b, 0);
+            userData.totalPlatformerDemons = Object.values(userData.platformerDemonsCompleted || {}).reduce((a, b) => a + b, 0);
+            userData.totalClassicLevels = Object.values(userData.classicLevelsCompleted || {}).reduce((a, b) => a + b, 0);
+            userData.totalPlatformerLevels = Object.values(userData.platformerLevelsCompleted || {}).reduce((a, b) => a + b, 0);
+
+        } catch (error) {
+            console.error("Error fetching user data from GDBrowser API:", error.message);
+        }
+    }
+
+    res.render('users', { userData });
+});
+
+
 module.exports = router;
