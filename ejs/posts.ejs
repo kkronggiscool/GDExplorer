@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/posts.css">
+</head>
+<body>
+    <div class="container">
+        <img src="/posttext.png" alt="Post Text" class="post-image">
+        
+        <h2>Enter a Username</h2>
+        <form action="/posts" method="get">
+            <input type="text" name="username" placeholder="Enter username" required>
+            <button type="submit">Submit</button>
+        </form>
+
+        <% if (userData) { %>
+            <h2>Posts by <%= userData.username %></h2>
+            <% if (userPosts.length > 0) { %>
+                <div class="posts-container">
+                    <% userPosts.forEach(post => { %>
+                        <div class="post">
+                            <p class="post-content"><%= post.content %></p>
+                            <div class="post-details">
+                                <span class="post-id">ID: <%= post.ID %></span>
+                                <span class="post-likes">Likes: <%= post.likes %></span>
+                                <span class="post-date">Date: <%= post.date %></span>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            <% } else { %>
+                <p>No posts found for this user.</p>
+            <% } %>
+        <% } else { %>
+            <p>User not found or an error occurred.</p>
+        <% } %>
+    </div>
+</body>
+</html>
