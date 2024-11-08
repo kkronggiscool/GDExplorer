@@ -17,6 +17,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Use routes
 app.use('/', routes);
 
+// Route for /thxcolon that renders thxcolon.ejs
+app.get('/thxcolon', (req, res) => {
+    res.render('thxcolon');
+});
+
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
