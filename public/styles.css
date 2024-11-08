@@ -21,26 +21,26 @@ body {
 }
 
 img.logo {
-    width: 60%; /* Geometry Dash logo at 60% of the screen width */
-    max-width: 600px; /* Max width to prevent it from becoming too large */
+    width: 100%; /* Logo at 100% of the screen width */
+    max-width: 1200px; /* Max width to make it very large */
     margin: 10px 0; /* Space between images */
 }
 
 img.level-browser {
-    width: 35%; /* Level browser image at 35% of the screen width */
-    max-width: 300px; /* Limit the max size */
+    width: 70%; /* Level browser image at 70% of the screen width */
+    max-width: 800px; /* Increased max width */
     margin: 10px 0; /* Space between images */
 }
 
 /* New styles for the search buttons */
 .search-buttons {
     display: flex; /* Align buttons horizontally */
-    gap: 10px; /* Space between buttons */
-    margin-top: 20px; /* Add space above the button row */
+    gap: 20px; /* Increased space between buttons */
+    margin-top: 30px; /* Add more space above the button row */
 }
 
 .search-buttons a img {
-    width: 120px; /* Fixed width for buttons */
+    width: 200px; /* Increased fixed width for buttons */
     height: auto; /* Keep the aspect ratio */
     cursor: pointer; /* Change cursor to pointer when hovering over the button */
 }
@@ -52,6 +52,6 @@ img.level-browser {
 /* Additional spacing below the container */
 .info-message,
 .info-text {
-    max-width: 800px;
-    padding: 0 15px;
+    max-width: 1000px;
+    padding: 0 25px; /* Increased padding */
 }

@@ -97,5 +97,30 @@ router.get('/users', async (req, res) => {
     res.render('users', { userData });
 });
 
+// Posts route
+router.get('/posts', async (req, res) => {
+    const username = req.query.username;
+    let userData = null;
+    let userPosts = [];
+
+    if (username) {
+        try {
+            // Fetch user profile to get accountID
+            const profileResponse = await axios.get(`https://gdbrowser.com/api/profile/${encodeURIComponent(username)}`);
+            userData = profileResponse.data;
+
+            // If accountID is available, fetch profile comments
+            if (userData.accountID) {
+                const postsResponse = await axios.get(`https://gdbrowser.com/api/comments/${encodeURIComponent(userData.accountID)}?type=profile&count=100`);
+                userPosts = postsResponse.data;
+            }
+        } catch (error) {
+            console.error("Error fetching data from GDBrowser API:", error.message);
+        }
+    }
+
+    // Render posts view with user data and posts
+    res.render('posts', { userData, userPosts });
+});
 
 module.exports = router;
