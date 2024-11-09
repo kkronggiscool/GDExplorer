@@ -32,41 +32,41 @@ To run GDExplorer locally, follow the steps below:
 
 1. **Clone the repository**
 
-   `git clone https://github.com/kkronggiscool/gdexplorer.git`  
-   `cd gdexplorer`
+   ```git clone https://github.com/kkronggiscool/gdexplorer.git```  
+   ```cd gdexplorer```
 
 2. **Install required dependencies**
 
    Ensure you have [Node.js](https://nodejs.org/) installed. Then run:
 
-   `npm install`
+   ```npm install```
    ^^ if this doesn't work, then please try running:
-   `npm install ejs express axios`
+   ```npm install ejs express axios```
 
-   This will install all the required packages listed in `package.json`, including:
+   This will install all the required packages listed in ```package.json```, including:
 
-   - `express`: for routing and handling HTTP requests.
-   - `axios`: for making API calls to GDBrowser.
-   - `ejs`: for rendering dynamic HTML views.
+   - ```express```: for routing and handling HTTP requests.
+   - ```axios```: for making API calls to GDBrowser.
+   - ```ejs```: for rendering dynamic HTML views.
 
 3. **Start the server**
 
    Run the following command to start the server:
 
-   `node app.js`
+   ```node app.js```
 
 4. **Access GDExplorer**
 
    Open your browser and navigate to:
 
-   `http://localhost:3000`
+   ```http://localhost:3000```
 
    You should now see the GDExplorer app running locally.
 
 
 ## Running the App Notes
 - Make sure your internet connection is stable, as the app makes API requests to GDBrowser to fetch data.
-- If you make any changes to the code, simply restart the app by stopping the server (`Ctrl + C`) and running `node app.js` again.
+- If you make any changes to the code, simply restart the app by stopping the server (```Ctrl + C```) and running ```node app.js``` again.
 - If you want to make changes in the JAVASCRIPT, then please restart the server after doing so! Updating css and ejs, you won't have to. Why am I even telling this to you??
 
 That's it! Now you're ready to use GDExplorer. Enjoy exploring Geometry Dash data with ease!
