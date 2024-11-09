@@ -11,6 +11,8 @@ GDExplorer is built around the GDBrowser API, which provides data related to Geo
 - Level details (including levels' rankings, difficulty, and more).
 - Player profiles, including stats like stars, coins, demons, etc.
 - Leaderboards for the game's players and creators.
+- And a lot more, like profile searching, profile posts, etc!
+- More being added everyday!
 
 By leveraging GDBrowser, GDExplorer provides users with a visual and simplified interface to interact with the same data in a clean, navigable way.
 
