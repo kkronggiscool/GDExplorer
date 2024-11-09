@@ -40,6 +40,8 @@ To run GDExplorer locally, follow the steps below:
    Ensure you have [Node.js](https://nodejs.org/) installed. Then run:
 
    `npm install`
+   ^^ if this doesn't work, then please try running:
+   `npm install ejs express axios`
 
    This will install all the required packages listed in `package.json`, including:
 
