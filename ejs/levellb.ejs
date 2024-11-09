@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level Browser</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/levellb.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Display the large levelbtext.png image -->
+        <img src="/levelbtext.png" alt="Level Browser Text" class="levelb-text-image">
+        
+        <!-- Level Search Field -->
+        <h2>Enter a Level ID</h2>
+        <form action="/levellb" method="get">
+            <input type="text" name="levelId" placeholder="Enter Level ID" required>
+            <button type="submit">Search</button>
+        </form>
+
+        <!-- Display leaderboard data if available -->
+        <% if (leaderboardData && leaderboardData.length > 0) { %>
+            <p class="info-message">Showing top 200 users on the leaderboard for this level:</p>
+            <div class="leaderboard-container">
+                <% leaderboardData.forEach(entry => { %>
+                    <div class="entry-container">
+                        <div class="entry-info">
+                            <h3><%= entry.rank %>. <%= entry.username %></h3>
+                            <p>Completion: <%= entry.percent %></p>
+                            <p>Coins Collected: <%= entry.coins %></p>
+                            <p>Date Achieved: <%= entry.date %></p>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        <% } else if (levelId) { %>
+            <p>No leaderboard data available for level ID <%= levelId %>.</p>
+        <% } %>
+    </div>
+</body>
+</html>

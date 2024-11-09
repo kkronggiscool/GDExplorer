@@ -123,4 +123,31 @@ router.get('/posts', async (req, res) => {
     res.render('posts', { userData, userPosts });
 });
 
+// Level Leaderboard route
+router.get('/levellb', async (req, res) => {
+    const levelId = req.query.levelId; // Get the level ID from the query parameters
+    let leaderboardData = [];
+
+    if (levelId) {
+        try {
+            // Fetch leaderboard data with a count of 200 users
+            const response = await axios.get(`https://gdbrowser.com/api/leaderboardLevel/${encodeURIComponent(levelId)}?count=200`);
+            leaderboardData = response.data.map(entry => ({
+                rank: entry.rank,
+                username: entry.username,
+                percent: `${entry.percent}%`, // Add % symbol to percent
+                coins: entry.coins,
+                date: entry.date,
+                color1: entry.icon.col1RGB, // Icon color 1
+                color2: entry.icon.col2RGB, // Icon color 2
+                icon: entry.icon.icon // Icon type (form or ID)
+            }));
+        } catch (error) {
+            console.error("Error fetching leaderboard data:", error.message);
+        }
+    }
+
+    res.render('levellb', { levelId, leaderboardData });
+});
+
 module.exports = router;
